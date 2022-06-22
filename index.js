@@ -1,12 +1,15 @@
-const io = require("socket.io")(process.env.PORT || 8900, {
-  cors: {
-    origin:
-      // "https://societalbeings.netlify.app/"
-      // || 
-      "http://localhost:3000",
-    // || process.env.PORT,
-  },
-});
+const io = require("socket.io")();
+// (process.env.PORT || 8900
+// , {
+//   cors: {
+//     origin:
+//       "https://societalbeings.netlify.app/"
+
+//     // "http://localhost:3000",
+//     // || process.env.PORT,
+//   },
+// }
+// );
 // we are giving port (8900) for socket and linking it with our react app.
 
 let users = []; // creating a user a array.
@@ -51,3 +54,4 @@ io.on("connection", (socket) => {
     io.emit("getUsers", users);
   });
 });
+io.listen(process.env.PORT || 8900)
